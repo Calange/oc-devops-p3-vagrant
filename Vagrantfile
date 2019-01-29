@@ -1,8 +1,10 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/stretch64"
+  config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.define :'oc-dev' do |t|
   end
   config.vm.hostname = "oc-dev"
+  config.vm.synced_folder "../oc-devops-p3-docker/", "/home/vagrant/oc-devops-p3-docker"
   config.vm.provision "shell", inline: <<-SHELL
     echo "\e[34m\e[1m=== Mise à jour de la liste des paquets disponibles ==="
     apt-get update
@@ -18,6 +20,13 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y docker-ce
     echo -e "\e[34m\e[1m=== Vérification de l'installation de Neovim, Ansible et Docker CE ==="
-    dpkg-query -l neovim ansible docker-ce
+    dpkg-query -l neovim ansible docker-ce || exit
+    echo -e "\e[34m\e[1m=== Build de l'image Docker oc-devops-p3-docker ==="
+    cd oc-devops-p3-docker || exit
+    docker build -t oc-devops-p3-docker .
+    echo -e "\e[34m\e[1m=== Run de l'image Docker oc-devops-p3-docker ==="
+    docker run --name monsite.com -d -p 80:80 oc-devops-p3-docker
+    echo -e "\e[34m\e[1m=== Vérification du fonctionnement du site ==="
+    curl http://localhost
   SHELL
 end
