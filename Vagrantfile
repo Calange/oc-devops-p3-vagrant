@@ -26,7 +26,5 @@ Vagrant.configure("2") do |config|
     docker build -t oc-devops-p3-docker .
     echo -e "\e[34m\e[1m=== Run de l'image Docker oc-devops-p3-docker ==="
     docker run --name monsite.com -d -p 80:80 oc-devops-p3-docker
-    echo -e "\e[34m\e[1m=== Vérification du fonctionnement du site ==="
-    curl http://localhost
   SHELL
 end
