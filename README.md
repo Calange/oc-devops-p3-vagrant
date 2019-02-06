@@ -21,4 +21,6 @@ $ vagrant plugin install vagrant-vbguest
 
 ## Usage
 
+*For development usage the folder `mywebsite.com` is synced with the local folder on host but you can disable this to have prod ready environment*
+
 [![asciicast](https://asciinema.org/a/224256.png)](https://asciinema.org/a/224256)
