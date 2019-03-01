@@ -1,46 +1,30 @@
 #!/usr/bin/env bash
 
-set -e # exit script immediately on first error
-
-# variables
-
-neovim_version="0.1.7-4"
-ansible_version="2.2.1.0-2"
-dockerce_version="5:18.09.1~3-0~debian-stretch"
-dockercompose_version="1.23.2"
-gitlabce_version="11.8.0-ce.0"
-gitlabce_url="http://gitlab.calange.fr:8000"
-
-# script
+set -e
 
 echo -e "\e[34m\e[1m=== Update current packages ==="
 apt-get update
 
-echo -e "\e[34m\e[1m=== Neovim ($neovim_version) installation ==="
-apt-get install -y neovim=$neovim_version
+echo -e "\e[34m\e[1m=== Neovim ($NEOVIM_VERSION) installation ==="
+apt-get install -y neovim="$NEOVIM_VERSION"
 
-echo -e "\e[34m\e[1m=== Ansible ($ansible_version) installation ==="
-apt-get install -y ansible=$ansible_version
+echo -e "\e[34m\e[1m=== Ansible ($ANSIBLE_VERSION) installation ==="
+apt-get install -y ansible="$ANSIBLE_VERSION"
 
-echo -e "\e[34m\e[1m=== Gitlab CE ($gitlabce_version) installation ==="
-apt-get install -y curl openssh-server ca-certificates
-curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash
-EXTERNAL_URL="$gitlabce_url" apt-get install -y gitlab-ce=$gitlabce_version
-
-echo -e "\e[34m\e[1m=== Docker CE ($dockerce_version) installation ==="
+echo -e "\e[34m\e[1m=== Docker CE ($DOCKERCE_VERSION) installation ==="
 apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
 curl -fsSL https://download.docker.com/linux/debian/gpg --output docker_gpg
 apt-key add docker_gpg && rm -f docker_gpg
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 apt-get update
-apt-get install -y docker-ce=$dockerce_version
+apt-get install -y docker-ce="$DOCKERCE_VERSION"
 
-echo -e "\e[34m\e[1m=== Docker-compose ($dockercompose_version) installation ==="
-curl -L "https://github.com/docker/compose/releases/download/$dockercompose_version/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+echo -e "\e[34m\e[1m=== Docker-compose ($DOCKERCOMPOSE_VERSION) installation ==="
+curl -L "https://github.com/docker/compose/releases/download/$DOCKERCOMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-echo -e "\e[34m\e[1m=== Check if Neovim, Ansible, Gitlab CE, Docker CE and Docker-compose are present ==="
-dpkg-query -l neovim ansible gitlab-ce docker-ce
+echo -e "\e[34m\e[1m=== Check if Neovim, Ansible, Docker CE and Docker-compose are present ==="
+dpkg-query -l neovim ansible docker-ce
 docker-compose --version
 
 echo -e "\e[34m\e[1m=== Docker-compose up: oc-devops-p3-docker ==="

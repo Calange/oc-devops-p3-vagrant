@@ -24,3 +24,19 @@ $ vagrant plugin install vagrant-vbguest
 *For development usage the folder `mywebsite.com` is synced with the local folder on host but you can disable this to have prod ready environment*
 
 [![asciicast](https://asciinema.org/a/226229.png)](https://asciinema.org/a/226229)
+
+# OC-DEVOPS-P4-VAGRANT
+
+## Gitlab
+
+The installation is inspired by this repo:
+
+https://github.com/tuminoid/gitlab-installer
+
+Gitlab.rb default configuration:
+
+https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+
+How to register a runner:
+
+https://docs.gitlab.com/runner/register/index.html
