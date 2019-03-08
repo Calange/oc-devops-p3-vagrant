@@ -5,7 +5,7 @@ dockerce_version = ENV['DOCKERCE_VERSION'] || "5:18.09.1~3-0~debian-stretch"
 dockercompose_version = ENV['DOCKERCOMPOSE_VERSION'] || "1.23.2"
 
 # 02 pelican variables
-pip_version = ENV['PIP_VERSION'] || "9.0.1-2"
+pythonpip_version = ENV['PYTHONPIP_VERSION'] || "9.0.1-2"
 
 # 03 gitlab variables
 gitlab_memory = ENV['GITLAB_MEMORY'] || 3072
@@ -31,6 +31,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/home/vagrant/oc-devops-p3-vagrant"
   config.vm.synced_folder "../oc-devops-p3-docker/", "/home/vagrant/oc-devops-p3-docker"
   config.vm.provision :shell, :path => "01-install-docker.sh", env: { "NEOVIM_VERSION" => neovim_version, "ANSIBLE_VERSION" => ansible_version, "DOCKERCE_VERSION" => dockerce_version, "DOCKERCOMPOSE_VERSION" => dockercompose_version}
-  config.vm.provision :shell, :path => "02-install-pelican.sh", env: { "PIP_VERSION" => pip_version }
+  config.vm.provision :shell, :path => "02-install-pelican.sh", env: { "PYTHONPIP_VERSION" => pythonpip_version }
   config.vm.provision :shell, :path => "03-install-gitlab.sh", env: { "GITLAB_HOSTNAME" => gitlab_host, "GITLAB_EDITION" => gitlab_edition, "GITLAB_VERSION" => gitlab_version, "GITLABRUNNER_VERSION" => gitlabrunner_version }
 end
