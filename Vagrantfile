@@ -30,6 +30,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = gitlab_host
   config.vm.synced_folder ".", "/home/vagrant/oc-devops-p3-vagrant"
   config.vm.synced_folder "../oc-devops-p3-docker/", "/home/vagrant/oc-devops-p3-docker"
+  config.vm.synced_folder "../oc-devops-p4-pelican/", "/home/vagrant/oc-devops-p4-pelican"
   config.vm.provision :shell, :path => "01-install-docker.sh", env: { "NEOVIM_VERSION" => neovim_version, "ANSIBLE_VERSION" => ansible_version, "DOCKERCE_VERSION" => dockerce_version, "DOCKERCOMPOSE_VERSION" => dockercompose_version}
   config.vm.provision :shell, :path => "02-install-pelican.sh", env: { "PYTHONPIP_VERSION" => pythonpip_version }
   config.vm.provision :shell, :path => "03-install-gitlab.sh", env: { "GITLAB_HOSTNAME" => gitlab_host, "GITLAB_EDITION" => gitlab_edition, "GITLAB_VERSION" => gitlab_version, "GITLABRUNNER_VERSION" => gitlabrunner_version }
