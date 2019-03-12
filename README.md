@@ -40,3 +40,5 @@ https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-tem
 How to register a runner:
 
 https://docs.gitlab.com/runner/register/index.html
+
+[![asciicast](https://asciinema.org/a/233326.png)](https://asciinema.org/a/233326)
