@@ -16,3 +16,6 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add
 sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 apt-get update
 apt-get install -y jenkins="$JENKINS_VERSION"
+sleep 5
+
+echo -e "\e[34m\e[1m=== Jenkins initialAdminPassword: $(cat /var/lib/jenkins/secrets/initialAdminPassword) ==="
