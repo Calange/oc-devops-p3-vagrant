@@ -31,17 +31,18 @@ Vagrant.configure("2") do |config|
     v.cpus = vagrant_cpus
   end
   config.vm.box = "debian/stretch64"
-  config.vm.network "forwarded_port", guest: 80, host: 8000 # docker port
+  # config.vm.network "forwarded_port", guest: 80, host: 8000 # docker port
   # config.vm.network "forwarded_port", guest: 81, host: 8100 # pelican port
   # config.vm.network "forwarded_port", guest: 90, host: 9000 # gitlab port
   config.vm.network "forwarded_port", guest: 8080, host: 8080 # jenkins port
+  config.vm.network "forwarded_port", guest: 8081, host: 8081 # prestashop port
   config.vm.define :'oc-dev' do |t|
   end
   config.vm.hostname = vagrant_host
   # config.vm.synced_folder ".", "/home/vagrant/oc-devops-p3-vagrant"
   # config.vm.synced_folder "../oc-devops-p3-docker/", "/home/vagrant/oc-devops-p3-docker"
   # config.vm.synced_folder "../oc-devops-p4-pelican/", "/home/vagrant/oc-devops-p4-pelican"
-  config.vm.synced_folder "../oc-devops-p8/", "/home/vagrant/oc-devops-p8"
+  config.vm.synced_folder "../oc-devops-p8-prestashop/", "/home/vagrant/oc-devops-p8-prestashop"
   config.vm.provision :shell, :path => "01-install-docker.sh", env: { "NEOVIM_VERSION" => neovim_version, "ANSIBLE_VERSION" => ansible_version, "DOCKERCE_VERSION" => dockerce_version, "DOCKERCOMPOSE_VERSION" => dockercompose_version}
   # config.vm.provision :shell, :path => "02-install-pelican.sh", env: { "PYTHONPIP_VERSION" => pythonpip_version }
   # config.vm.provision :shell, :path => "03-install-gitlab.sh", env: { "GITLAB_HOSTNAME" => vagrant_host, "GITLAB_EDITION" => gitlab_edition, "GITLAB_VERSION" => gitlab_version, "GITLABRUNNER_VERSION" => gitlabrunner_version }
