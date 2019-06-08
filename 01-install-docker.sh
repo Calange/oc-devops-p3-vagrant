@@ -27,6 +27,6 @@ echo -e "\e[34m\e[1m=== Check if Neovim, Ansible, Docker CE and Docker-compose a
 dpkg-query -l neovim ansible docker-ce
 docker-compose --version
 
-echo -e "\e[34m\e[1m=== Docker-compose up: oc-devops-p8-prestashop ==="
-cd oc-devops-p8-prestashop
-docker-compose up -d --build
+# echo -e "\e[34m\e[1m=== Docker-compose up: oc-devops-p8-prestashop ==="
+# cd oc-devops-p8-prestashop
+# docker-compose up -d --build
