@@ -30,6 +30,9 @@ Vagrant.configure("2") do |config|
     v.memory = vagrant_memory
     v.cpus = vagrant_cpus
   end
+  if Vagrant.has_plugin?("vagrant-vbguest")
+      config.vbguest.auto_update = false
+  end
   config.vm.box = "debian/stretch64"
   config.vm.network "private_network", ip: "192.168.100.100"
   # config.vm.network "forwarded_port", guest: 80, host: 8000 # docker port
