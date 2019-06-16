@@ -21,7 +21,7 @@ dockercompose_version = ENV['DOCKERCOMPOSE_VERSION'] || "1.24.0"
 git_version = ENV['GIT_VERSION'] || "1:2.11.0-3+deb9u4"
 openjdk8_version = ENV['OPENJDK8_VERSION'] || "8u212-b03-2~deb9u1"
 nginx_version = ENV['NGINX_VERSION'] || "1.10.3-1+deb9u2"
-jenkins_version = ENV['JENKINS_VERSION'] || "2.164.3"
+jenkins_version = ENV['JENKINS_VERSION'] || "2.176.1"
 
 
 # vagrant configuration

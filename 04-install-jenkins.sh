@@ -11,9 +11,6 @@ apt-get install -y git="$GIT_VERSION"
 echo -e "\e[34m\e[1m=== Openjdk ($OPENJDK8_VERSION) installation ==="
 apt-get install -y openjdk-8-jdk-headless="$OPENJDK8_VERSION"
 
-# echo -e "\e[34m\e[1m=== Nginx ($NGINX_VERSION) installation ==="
-# apt-get install -y nginx="$NGINX_VERSION"
-
 echo -e "\e[34m\e[1m=== Jenkins ($JENKINS_VERSION) installation ==="
 wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
 sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
