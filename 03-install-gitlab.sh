@@ -19,7 +19,7 @@ apt-get -y install openssh-server postfix
 
 # download omnibus-gitlab package with apt
 echo "Setting up Gitlab deb repository ..."
-curl https://packages.gitlab.com/install/repositories/gitlab/"$GITLAB_EDITION"/script.deb.sh | sudo bash
+curl -s https://packages.gitlab.com/install/repositories/gitlab/"$GITLAB_EDITION"/script.deb.sh | sudo bash
 echo "Installing $GITLAB_EDITION via apt ..."
 apt-get install -y "$GITLAB_EDITION"="$GITLAB_VERSION"
 
@@ -30,7 +30,7 @@ gitlab-ctl reconfigure
 
 # install gitlab-runner and register a runner
 echo "Setting up Gitlab-runner deb repository ..."
-curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+curl -sL https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
 echo "Installing gitlabrunner via apt ..."
 apt-get install -y gitlab-runner="$GITLABRUNNER_VERSION"
 GITLAB_TOKEN=$(gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token")

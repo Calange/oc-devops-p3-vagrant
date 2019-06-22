@@ -20,7 +20,7 @@ apt-get update
 apt-get install -y docker-ce="$DOCKERCE_VERSION"
 
 echo -e "\e[34m\e[1m=== Docker-compose ($DOCKERCOMPOSE_VERSION) installation ==="
-curl -L "https://github.com/docker/compose/releases/download/$DOCKERCOMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+curl -sL "https://github.com/docker/compose/releases/download/$DOCKERCOMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 echo -e "\e[34m\e[1m=== Check if Neovim, Ansible, Docker CE and Docker-compose are present ==="
