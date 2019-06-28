@@ -18,4 +18,6 @@ apt-get update
 apt-get install -y jenkins="$JENKINS_VERSION"
 sleep 10
 
+sh -c "echo 'jenkins    ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
+
 echo -e "\e[34m\e[1m=== Jenkins initialAdminPassword: $(cat /var/lib/jenkins/secrets/initialAdminPassword) ==="
